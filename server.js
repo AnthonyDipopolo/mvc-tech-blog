@@ -6,7 +6,7 @@ const session = require('express-session');
 // Import our db connection
 const db = require('./db/connection');
 //Import sessions
-const sessions = require('express-session');
+// const sessions = require('express-session');
 
 // Import routes
 const api_routes = require('./controllers/api_routes');
