@@ -1,0 +1,65 @@
+body {
+  padding: 5%;
+  font-family: sans-serif;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+nav p {
+  margin: 0 20px;
+}
+
+nav a {
+  text-decoration: none;
+  padding: 6px 10px;
+  color: #333;
+  border: 1px solid #333;
+}
+
+nav a:not(:last-child) {
+  margin-right: 15px;
+}
+
+nav a:hover, nav a.active {
+  background-color: #333;
+  color: #fff;
+}
+
+form {
+  width: 400px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+form > * {
+  padding: 7px 10px;
+  margin: 3px 0;
+}
+
+form h1 {
+  text-align: center;
+}
+
+ul li {
+  margin: 10px 0;
+}
+
+ul li p {
+  margin: 4px;
+}
