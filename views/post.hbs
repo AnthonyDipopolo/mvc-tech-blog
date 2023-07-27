@@ -1,0 +1,72 @@
+<!-- post.handlebars -->
+<main class="thoughts">
+  <div class="thought">
+    <h2>{{thought.title}}</h2>
+    <p>{{thought.text}}</p><br>
+    <p>Added By: {{thought.user.username}}</p>
+    <p>Created On: {{thought.createdAt}}</p>
+
+    <!-- Display comments for the current thought -->
+    <div class="comments">
+      {{#each thought.comments}}
+        <p>{{this}}</p>
+      {{/each}}
+    </div>
+  </div>
+</main>
+
+<form id="commentForm">
+  <input name="comment" type="text" placeholder="Add a comment">
+  <button type="button" onclick="submitForm()">Submit</button>
+</form>
+
+<!-- Display the fetched data -->
+<div id="fetchedDataContainer">
+  <!-- Fetched Data will be inserted here -->
+</div>
+
+<script>
+  // Function to submit the comment form
+  function submitForm() {
+    const thoughtId = "{{thought.id}}";
+    const commentInput = document.querySelector('[name="comment"]');
+    const commentText = document.querySelector('[name="comment"]').value;
+
+    fetch(`/thought/${thoughtId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ comment: commentText })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      // Display the fetched data in the browser
+      const fetchedDataContainer = document.getElementById('fetchedDataContainer');
+
+      fetchedDataContainer.innerHTML = `
+        <h2>${data.title}</h2>
+        <p>${data.text}</p>
+        <p>Created On: ${data.updatedAt}</p><br>
+        <div class="comments">
+          <p>Comment: ${data.comment || ''}</p><br>
+          <p>Added By:${data.user.username}</p>
+
+        </div>
+      `;
+
+       // Empty the comment input box
+      commentInput.value = '';
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  }
+
+  // Prevent default form submission
+  document.getElementById('commentForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+  });
+</script>
+

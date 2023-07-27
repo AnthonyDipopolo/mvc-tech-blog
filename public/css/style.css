@@ -63,3 +63,8 @@ ul li {
 ul li p {
   margin: 4px;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}

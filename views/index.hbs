@@ -3,8 +3,12 @@
 <ul>
   {{#each thoughts}}
     <li>
-      <p>{{text}}</p>
-      <p>Added By: {{user.email}}</p>
+      <a href="/thought/{{this.id}}">
+        <h2>{{title}}</h2>
+      </a>
+      <p>{{text}}</p><br>
+      <p>Added By: {{user.username}}</p>
+      <p>Created On: {{createdAt}}</p>
     </li>
   {{/each}}
 </ul>

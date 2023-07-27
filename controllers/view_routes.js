@@ -54,9 +54,11 @@ router.get('/dashboard', isAuthenticated, async (req, res) => {
   // The user IS logged in
   res.render('dashboard', {
     email: user.email,
+    username: user.username,
     thoughts: thoughts
   });
 });
+
 
 
 module.exports = router;

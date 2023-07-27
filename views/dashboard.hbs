@@ -1,14 +1,17 @@
 <h1>Dashboard</h1>
 
 <form action="/thought" method="POST">
-  <input name="text" type="text" placeholder="Share your thought">
+  <input name="title" type="text" placeholder="Enter your title"> <!-- input for the title -->
+  <input name="text" type="text" placeholder="Share your thought">   <!-- input for the thought -->
   <button>Submit</button>
 </form>
 
 <main class="thoughts">
   {{#each thoughts}}
     <div class="thought">
-      <p>{{text}}</p>
+      <h2>{{title}}</h2>
+      <p>{{text}}</p><br>
+      <p>Created On: {{createdAt}}</p>
     </div>
   {{/each}}
 </main>
