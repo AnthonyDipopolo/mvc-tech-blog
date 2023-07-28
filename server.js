@@ -5,7 +5,7 @@ const { engine } = require('express-handlebars');
 const session = require('express-session');
 // Import our db connection
 const db = require('./db/connection');
-//Import sessions
+
 
 // Import routes
 const view_routes = require('./controllers/view_routes');
@@ -15,6 +15,8 @@ const thought_routes = require('./controllers/thought_routes');
 
 const app = express();
 const PORT = process.env.PORT || 3333;
+
+app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }));
 
 // Middleware
 app.use(express.json()); // Allows the client/browser to send json in a request
