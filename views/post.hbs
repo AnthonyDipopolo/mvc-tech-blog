@@ -48,10 +48,11 @@
       fetchedDataContainer.innerHTML = `
         <h2>${data.title}</h2>
         <p>${data.text}</p>
-        <p>Created On: ${data.updatedAt}</p><br>
         <div class="comments">
           <p>Comment: ${data.comment || ''}</p><br>
-          <p>Added By:${data.user.username}</p>
+          <p>Added By:${data.username}</p>
+          <p>Created On: ${data.updatedAt}</p><br>
+
 
         </div>
       `;

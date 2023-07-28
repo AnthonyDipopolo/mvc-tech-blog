@@ -53,25 +53,7 @@ router.post('/register', async (req, res) => {
 
 });
 
-//log out user
-router.get('/logout', async (req, res) => {
-  try {
-    req.session.destroy();
-
-    // Creates a session and sends a cookie to the client
-    req.session.user_id = newUser.id;
-
-    res.redirect('/dashboard');
-  } catch (err) {
-    const dupeEmail = err.errors.find(e => e.path === 'email');
-
-    // If email already exists, redirect to the login page
-    if (dupeEmail) res.redirect('/login');
-  }
-});
-
-
-// Log out user
+//Log out user
 router.get('/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) {

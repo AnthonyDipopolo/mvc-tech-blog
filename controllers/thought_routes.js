@@ -43,13 +43,9 @@ router.get('/thought/:id', async (req, res) => {
       return res.status(404).send('Thought not found');
     }
 
-    //Add the username to the thought route using optional chaining
-    const username = thought?.User?.username;
-
     res.render('post', {
       isLoggedIn: req.session.user_id,
       thought: thought.get({ plain: true }), // Pass the selected thought as a single object
-      username: username // Pass the username to the view
     });
   } catch (err) {
     // Handle any errors that occurred during database query
@@ -81,15 +77,33 @@ router.put('/thought/:id', async (req, res) => {
     // Save the updated thought
     await thought.save();
 
+    // Fetch the associated user and include the username in the response
+    const user = await User.findByPk(thought.userId);
+    if (!user) {
+      console.log('User not found');
+      return res.json('User not found');
+    }
+
     console.log('Comment added to thought successfully');
 
-    res.json(thought);
+    // Send the response with the updated thought data and the username
+    res.json({
+      id: thought.id,
+      title: thought.title,
+      text: thought.text,
+      createdAt: thought.createdAt,
+      updatedAt: thought.updatedAt,
+      comment: thought.comment,
+      userId: thought.userId,
+      username: user.username // Include the username in the response to be able to display the username who added the comment
+    });
   } catch (err) {
     // Handle any errors that occurred during the process
     console.error('Error adding comment to thought:', err);
     res.json('Server Error');
   }
 });
+
 
 
 module.exports = router;
