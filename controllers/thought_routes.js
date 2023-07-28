@@ -177,7 +177,7 @@ router.put('/dashboard/:id', async (req, res) => {
 });
 
 
-// Route to delete the thought on the /dashboard/:id route
+// Route to delete the thought in the dashboard
 router.delete('/dashboard/:id', async (req, res) => {
   try {
     const thoughtId = req.params.id; // Retrieve the thought ID from the URL parameter

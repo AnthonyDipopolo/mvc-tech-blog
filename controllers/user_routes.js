@@ -4,7 +4,7 @@ const User = require('../models/User');
 // Log in user
 router.post('/login', async (req, res) => {
   try {
-    // const formEmail = req.body.email;
+
     const formUsername = req.body.username;
     const formPassword = req.body.password;
 
