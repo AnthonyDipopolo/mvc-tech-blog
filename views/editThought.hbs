@@ -1,0 +1,20 @@
+<h1>Edit Your Thought</h1>
+
+<form id="updateForm" action="/dashboard/{{thought.id}}" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+  <label for="title">Title:</label>
+  <input name="title" type="text" value="{{thought.title}}">
+
+  <label for="text">Text:</label>
+  <input name="text" type="text" value="{{thought.text}}">
+
+  <button id="updateThoughtButton" type="button" data-thought-id="{{thought.id}}">Update Thought</button>
+</form>
+
+<!-- Form for deleting the thought -->
+<form class="delete-form" action="/dashboard/{{thought.id}}" method="POST" onsubmit="return confirm('Are you sure you want to delete this thought?');">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit" style="background-color: red; color: white;">Delete Thought</button>
+</form>
+
+<script src="/js/browser.js"></script>

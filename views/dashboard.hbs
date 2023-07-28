@@ -1,17 +1,22 @@
 <h1>Dashboard</h1>
 
+{{!-- Form to add a new thought --}}
 <form action="/thought" method="POST">
-  <input name="title" type="text" placeholder="Enter your title"> <!-- input for the title -->
-  <input name="text" type="text" placeholder="Share your thought">   <!-- input for the thought -->
+  <input name="title" type="text" placeholder="Enter your title">
+  <input name="text" type="text" placeholder="Share your thought">
   <button>Submit</button>
 </form>
 
-<main class="thoughts">
-  {{#each thoughts}}
-    <div class="thought">
-      <h2>{{title}}</h2>
-      <p>{{text}}</p><br>
-      <p>Created On: {{createdAt}}</p>
-    </div>
-  {{/each}}
-</main>
+{{!-- Loop through all the thoughts and display them --}}
+{{#each thoughts}}
+  <div class="thought">
+    <h2>
+      <a href="/dashboard/{{id}}">{{title}}</a>
+    </h2>
+    <p>{{text}}</p><br>
+    <p>Created On: {{createdAt}}</p>
+  </div>
+{{/each}}
+
+<script src="/js/browser.js"></script>
+
