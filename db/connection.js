@@ -1,8 +1,12 @@
 const { Sequelize } = require('sequelize');
+require('dotenv').config(); // Load environment variables from .env
 
-const sequelize = new Sequelize('user_twitter_example', 'root', '', {
-  host: '127.0.0.1',
-  dialect: 'mysql'
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false,
+    },
+  },
 });
-
-module.exports = sequelize;
