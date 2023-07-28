@@ -8,9 +8,16 @@
 
     <!-- Display comments for the current thought -->
     <div class="comments">
-      {{#each thought.comments}}
-        <p>{{this}}</p>
-      {{/each}}
+      <h3>Comments:</h3>
+      <ul>
+        {{#each thought.comments}}
+          <li>
+            <p>{{this.comment}}</p>
+            <p>Added By: {{this.username}}</p>
+            <p>On: {{this.updatedAt}}</p>
+          </li>
+        {{/each}}
+      </ul>
     </div>
   </div>
 </main>
@@ -24,45 +31,41 @@
   <!-- Fetched Data will be inserted here -->
 </div>
 
+
 <script>
-  // Function to submit the comment form
   function submitForm() {
-    const thoughtId = "{{thought.id}}";
-    const commentInput = document.querySelector('[name="comment"]');
-    const commentText = document.querySelector('[name="comment"]').value;
+  const thoughtId = "{{thought.id}}";
+  const commentInput = document.querySelector('[name="comment"]');
+  const commentText = document.querySelector('[name="comment"]').value;
 
-    fetch(`/thought/${thoughtId}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ comment: commentText })
-    })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      // Display the fetched data in the browser
-      const fetchedDataContainer = document.getElementById('fetchedDataContainer');
+  fetch(`/thought/${thoughtId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ comment: commentText })
+  })
+  .then(response => response.json())
+  .then(data => {
+    // Update the list of comments in the DOM
+    const commentsContainer = document.querySelector('.comments');
+    const newCommentElement = document.createElement('li');
+    newCommentElement.innerHTML = `
+      <p>${data.comment}</p>
+      <p>Added By: ${data.username}</p>
+      <p>On: ${data.updatedAt}</p>
+    `;
+    commentsContainer.querySelector('ul').appendChild(newCommentElement);
 
-      fetchedDataContainer.innerHTML = `
-        <h2>${data.title}</h2>
-        <p>${data.text}</p>
-        <div class="comments">
-          <p>Comment: ${data.comment || ''}</p><br>
-          <p>Added By:${data.username}</p>
-          <p>Created On: ${data.updatedAt}</p><br>
+    // Empty the comment input box
+    commentInput.value = '';
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+}
 
 
-        </div>
-      `;
-
-       // Empty the comment input box
-      commentInput.value = '';
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  }
 
   // Prevent default form submission
   document.getElementById('commentForm').addEventListener('submit', function(event) {

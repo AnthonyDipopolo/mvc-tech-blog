@@ -152,7 +152,7 @@ router.put('/dashboard/:id', async (req, res) => {
     // Update the thought's properties with the new data
     thought.title = title;
     thought.text = text;
-    thought.comment = comment;
+    thought.comment = comment; // Update the comment property with the new comment
 
     // Save the updated thought
     await thought.save();
@@ -166,7 +166,7 @@ router.put('/dashboard/:id', async (req, res) => {
       text: thought.text,
       createdAt: thought.createdAt,
       updatedAt: thought.updatedAt,
-      comment: thought.comment,
+      comment: thought.comment, // Include the comment in the response
       userId: thought.userId,
     });
   } catch (err) {
@@ -175,6 +175,7 @@ router.put('/dashboard/:id', async (req, res) => {
     res.json('Server Error');
   }
 });
+
 
 // Route to delete the thought on the /dashboard/:id route
 router.delete('/dashboard/:id', async (req, res) => {
