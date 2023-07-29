@@ -6,13 +6,15 @@ This full stack application was built to allow users to display their thoughts. 
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+https://tech-blog-ad-c32ea018bfd0.herokuapp.com/
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+![screenshot](./assets/screenshots/Screen%20Shot%202023-07-29%20at%203.12.38%20PM.png)
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+![screenshot](./assets/screenshots/Screen%20Shot%202023-07-29%20at%203.12.46%20PM.png)
+
+![screenshot](./assets/screenshots/Screen%20Shot%202023-07-29%20at%203.12.54%20PM.png)
+
+
 
 ## License
 
